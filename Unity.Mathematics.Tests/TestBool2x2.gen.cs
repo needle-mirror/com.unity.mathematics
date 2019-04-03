@@ -366,6 +366,26 @@ namespace Unity.Mathematics.Tests
             TestUtils.AreEqual(a3 ^ b3, r3);
         }
 
+        [Test]
+        public void bool2x2_operator_logical_not()
+        {
+            bool2x2 a0 = bool2x2(true, true, false, false);
+            bool2x2 r0 = bool2x2(false, false, true, true);
+            TestUtils.AreEqual(!a0, r0);
+
+            bool2x2 a1 = bool2x2(true, true, false, true);
+            bool2x2 r1 = bool2x2(false, false, true, false);
+            TestUtils.AreEqual(!a1, r1);
+
+            bool2x2 a2 = bool2x2(false, false, false, true);
+            bool2x2 r2 = bool2x2(true, true, true, false);
+            TestUtils.AreEqual(!a2, r2);
+
+            bool2x2 a3 = bool2x2(true, false, true, true);
+            bool2x2 r3 = bool2x2(false, true, false, false);
+            TestUtils.AreEqual(!a3, r3);
+        }
+
 
     }
 }
