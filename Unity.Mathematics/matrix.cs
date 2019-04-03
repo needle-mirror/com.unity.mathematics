@@ -1,193 +1,304 @@
-﻿namespace Unity.Mathematics
+using static Unity.Mathematics.math;
+
+namespace Unity.Mathematics
 {
-    public partial struct float4x4
-    {
-        public float4 m0;
-        public float4 m1;
-        public float4 m2;
-        public float4 m3;
-
-        public float4x4(float4 m0, float4 m1, float4 m2, float4 m3)
-        {
-            this.m0 = m0;
-            this.m1 = m1;
-            this.m2 = m2;
-            this.m3 = m3;
-        }
-
-        public float4x4(float m00, float m01, float m02, float m03,
-            float m10, float m11, float m12, float m13,
-            float m20, float m21, float m22, float m23,
-            float m30, float m31, float m32, float m33)
-        {
-            this.m0 = new float4(m00, m01, m02, m03);
-            this.m1 = new float4(m10, m11, m12, m13);
-            this.m2 = new float4(m20, m21, m22, m23);
-            this.m3 = new float4(m30, m31, m32, m33);
-        }
-
-        public static float4x4 operator *(float4x4 mat, float s)
-        {
-            return new float4x4(mat.m0 * s, mat.m1 * s, mat.m2 * s, mat.m3 * s);
-        }
-
-        public static float4x4 identity => new float4x4
-        {
-            m0 = new float4(1.0f, 0.0f, 0.0f, 0.0f),
-            m1 = new float4(0.0f, 1.0f, 0.0f, 0.0f),
-            m2 = new float4(0.0f, 0.0f, 1.0f, 0.0f),
-            m3 = new float4(0.0f, 0.0f, 0.0f, 1.0f)
-        };
-    }
-
     public partial struct float2x2
     {
-        public float2 m0;
-        public float2 m1;
+        public float2 c0;
+        public float2 c1;
 
-        public float2x2(float2 m0, float2 m1)
+        public float2x2(float2 c0, float2 c1)
         {
-            this.m0 = m0;
-            this.m1 = m1;
+            this.c0 = c0;
+            this.c1 = c1;
         }
 
         public float2x2(float m00, float m01,
-            float m10, float m11)
+                        float m10, float m11)
         {
-            this.m0 = new float2(m00, m01);
-            this.m1 = new float2(m10, m11);
+            this.c0 = float2(m00, m10);
+            this.c1 = float2(m01, m11);
         }
+
+        public static readonly float2x2 identity = new float2x2(1.0f, 0.0f, 0.0f, 1.0f);
 
         public static float2x2 operator *(float2x2 mat, float s)
         {
-            return new float2x2(mat.m0 * s, mat.m1 * s);
+            return float2x2(mat.c0 * s, mat.c1 * s);
         }
     }
 
     public partial struct float3x3
     {
-        public float3 m0;
-        public float3 m1;
-        public float3 m2;
+        public float3 c0;
+        public float3 c1;
+        public float3 c2;
 
-        public float3x3(float3 m0, float3 m1, float3 m2)
+        public float3x3(float3 c0, float3 c1, float3 c2)
         {
-            this.m0 = m0;
-            this.m1 = m1;
-            this.m2 = m2;
+            this.c0 = c0;
+            this.c1 = c1;
+            this.c2 = c2;
         }
 
         public float3x3(float m00, float m01, float m02,
-            float m10, float m11, float m12,
-            float m20, float m21, float m22)
+                        float m10, float m11, float m12,
+                        float m20, float m21, float m22)
         {
-            this.m0 = new float3(m00, m01, m02);
-            this.m1 = new float3(m10, m11, m12);
-            this.m2 = new float3(m20, m21, m22);
+            this.c0 = float3(m00, m10, m20);
+            this.c1 = float3(m01, m11, m21);
+            this.c2 = float3(m02, m12, m22);
         }
+
+        public static readonly float3x3 identity = new float3x3(1.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 1.0f);
 
         public static float3x3 operator *(float3x3 mat, float s)
         {
-            return new float3x3(mat.m0 * s, mat.m1 * s, mat.m2 * s);
+            return float3x3(mat.c0 * s, mat.c1 * s, mat.c2 * s);
+        }
+    }
+
+    public partial struct float4x4
+    {
+        public float4 c0;
+        public float4 c1;
+        public float4 c2;
+        public float4 c3;
+
+        public float4x4(float4 c0, float4 c1, float4 c2, float4 c3)
+        {
+            this.c0 = c0;
+            this.c1 = c1;
+            this.c2 = c2;
+            this.c3 = c3;
+        }
+
+        public float4x4(float m00, float m01, float m02, float m03,
+                        float m10, float m11, float m12, float m13,
+                        float m20, float m21, float m22, float m23,
+                        float m30, float m31, float m32, float m33)
+        {
+            this.c0 = float4(m00, m10, m20, m30);
+            this.c1 = float4(m01, m11, m21, m31);
+            this.c2 = float4(m02, m12, m22, m32);
+            this.c3 = float4(m03, m13, m23, m33);
+        }
+
+        public static readonly float4x4 identity = new float4x4(1.0f, 0.0f, 0.0f, 0.0f,
+            0.0f, 1.0f, 0.0f, 0.0f,
+            0.0f, 0.0f, 1.0f, 0.0f,
+            0.0f, 0.0f, 0.0f, 1.0f);
+
+
+        public static float4x4 operator *(float4x4 mat, float s)
+        {
+            return float4x4(mat.c0 * s, mat.c1 * s, mat.c2 * s, mat.c3 * s);
         }
     }
 
     partial class math
     {
-        public static float4 mul(float4x4 x, float4 v)
+        public static float2x2 float2x2(float2 c0, float2 c1)
         {
-            return mad(x.m0, v.x, x.m1 * v.y) + mad(x.m2, v.z, x.m3 * v.w);
+            return new float2x2(c0, c1);
         }
 
-        public static float4x4 mul(float4x4 a, float4x4 b)
+        public static float2x2 float2x2(float m00, float m01,
+                                        float m10, float m11)
         {
-            return new float4x4(mul(a, b.m0), mul(a, b.m1), mul(a, b.m2), mul(a, b.m3));
+            return new float2x2(m00, m01,
+                                m10, m11);
+        }
+
+        public static float3x3 float3x3(float3 c0, float3 c1, float3 c2)
+        {
+            return new float3x3(c0, c1, c2);
+        }
+
+        public static float3x3 float3x3(float m00, float m01, float m02,
+                                        float m10, float m11, float m12,
+                                        float m20, float m21, float m22)
+        {
+            return new float3x3(m00, m01, m02,
+                                m10, m11, m12,
+                                m20, m21, m22);
+        }
+
+        public static float4x4 float4x4(float4 c0, float4 c1, float4 c2, float4 c3)
+        {
+            return new float4x4(c0, c1, c2, c3);
+        }
+
+        public static float4x4 float4x4(float m00, float m01, float m02, float m03,
+                                        float m10, float m11, float m12, float m13,
+                                        float m20, float m21, float m22, float m23,
+                                        float m30, float m31, float m32, float m33)
+        {
+            return new float4x4(m00, m01, m02, m03,
+                                m10, m11, m12, m13,
+                                m20, m21, m22, m23,
+                                m30, m31, m32, m33);
         }
 
         public static float2 mul(float2x2 x, float2 v)
         {
-            return mad(x.m0, v.x, x.m1 * v.y);
+            return mad(x.c0, v.x, x.c1 * v.y);
         }
 
         public static float2x2 mul(float2x2 a, float2x2 b)
         {
-            return new float2x2(mul(a, b.m0), mul(a, b.m1));
+            return float2x2(mul(a, b.c0), mul(a, b.c1));
         }
 
         public static float3 mul(float3x3 x, float3 v)
         {
-            return mad(x.m2, v.z, mad(x.m0, v.x, x.m1 * v.y));
+            return mad(x.c2, v.z, mad(x.c0, v.x, x.c1 * v.y));
         }
 
         public static float3x3 mul(float3x3 a, float3x3 b)
         {
-            return new float3x3(mul(a, b.m0), mul(a, b.m1), mul(a, b.m2));
+            return float3x3(mul(a, b.c0), mul(a, b.c1), mul(a, b.c2));
+        }
+
+        public static float4 mul(float4x4 x, float4 v)
+        {
+            return mad(x.c0, v.x, x.c1 * v.y) + mad(x.c2, v.z, x.c3 * v.w);
+        }
+
+        public static float4x4 mul(float4x4 a, float4x4 b)
+        {
+            return float4x4(mul(a, b.c0), mul(a, b.c1), mul(a, b.c2), mul(a, b.c3));
         }
 
         public static float3x3 orthogonalize(float3x3 i)
         {
             float3x3 o;
 
-            float3 u = i.m0;
-            float3 v = i.m1 - i.m0 * math.dot(i.m1, i.m0);
+            float3 u = i.c0;
+            float3 v = i.c1 - i.c0 * math.dot(i.c1, i.c0);
 
             float lenU = math.length(u);
             float lenV = math.length(v);
 
             bool c = lenU > epsilon_normal && lenV > epsilon_normal;
 
-            o.m0 = math.select(new float3(1, 0, 0), u / lenU, c);
-            o.m1 = math.select(new float3(0, 1, 0), v / lenV, c);
-            o.m2 = math.cross(o.m0, o.m1);
+            o.c0 = math.select(float3(1, 0, 0), u / lenU, c);
+            o.c1 = math.select(float3(0, 1, 0), v / lenV, c);
+            o.c2 = math.cross(o.c0, o.c1);
 
             return o;
         }
 
-        public static float2x2 transpose(float2x2 i) { return new float2x2(i.m0.x, i.m1.x, i.m0.y, i.m1.y); }
-        public static float3x3 transpose(float3x3 i) { return new float3x3(i.m0.x, i.m1.x, i.m2.x, i.m0.y, i.m1.y, i.m2.y, i.m0.z, i.m1.z, i.m2.z); }
-        public static float4x4 transpose(float4x4 i) { return new float4x4(i.m0.x, i.m1.x, i.m2.x, i.m3.x, i.m0.y, i.m1.y, i.m2.y, i.m3.y, i.m0.z, i.m1.z, i.m2.z, i.m3.z, i.m0.w, i.m1.w, i.m2.w, i.m3.w); }
+        public static float2x2 transpose(float2x2 m) { return float2x2(m.c0.x, m.c0.y, m.c1.x, m.c1.y); }
+        public static float3x3 transpose(float3x3 m) { return float3x3(m.c0.x, m.c0.y, m.c0.z, m.c1.x, m.c1.y, m.c1.z, m.c2.x, m.c2.y, m.c2.z); }
+        public static float4x4 transpose(float4x4 m) { return float4x4(m.c0.x, m.c0.y, m.c0.z, m.c0.w, m.c1.x, m.c1.y, m.c1.z, m.c1.w, m.c2.x, m.c2.y, m.c2.z, m.c2.w, m.c3.x, m.c3.y, m.c3.z, m.c3.w); }
+
+        public static float2x2 inverse(float2x2 m)
+        {
+            float a = m.c0.x;
+            float b = m.c1.x;
+            float c = m.c0.y;
+            float d = m.c1.y;
+
+            float det = a * d - b * c;
+
+            return float2x2( d, -b,
+                            -c,  a) * (1.0f / det);
+        }
+
+        public static float3x3 inverse(float3x3 m)
+        {
+            // naive scalar implementation using direct calculation by cofactors
+            float3 c0 = m.c0;
+            float3 c1 = m.c1;
+            float3 c2 = m.c2;
+            
+            // calculate minors
+            float m00 = c1.y * c2.z - c1.z * c2.y;
+            float m01 = c0.y * c2.z - c0.z * c2.y;
+            float m02 = c0.y * c1.z - c0.z * c1.y;
+
+            float m10 = c1.x * c2.z - c1.z * c2.x;
+            float m11 = c0.x * c2.z - c0.z * c2.x;
+            float m12 = c0.x * c1.z - c0.z * c1.x;
+
+            float m20 = c1.x * c2.y - c1.y * c2.x;
+            float m21 = c0.x * c2.y - c0.y * c2.x;
+            float m22 = c0.x * c1.y - c0.y * c1.x;
+            
+            float det = c0.x * m00 - c1.x * m01 + c2.x * m02;
+            
+            return float3x3( m00, -m10,  m20,
+                            -m01,  m11, -m21,
+                             m02, -m12,  m22) * (1.0f / det);
+        }
+
+        public static float4x4 inverse(float4x4 m)
+        {
+            // naive scalar implementation using direct calculation by cofactors
+            float4 c0 = m.c0;
+            float4 c1 = m.c1;
+            float4 c2 = m.c2;
+            float4 c3 = m.c3;
+
+            // calculate minors
+            float m00 = c1.y * (c2.z * c3.w - c2.w * c3.z) - c2.y * (c1.z * c3.w - c1.w * c3.z) + c3.y * (c1.z * c2.w - c1.w * c2.z);
+            float m01 = c0.y * (c2.z * c3.w - c2.w * c3.z) - c2.y * (c0.z * c3.w - c0.w * c3.z) + c3.y * (c0.z * c2.w - c0.w * c2.z);
+            float m02 = c0.y * (c1.z * c3.w - c1.w * c3.z) - c1.y * (c0.z * c3.w - c0.w * c3.z) + c3.y * (c0.z * c1.w - c0.w * c1.z);
+            float m03 = c0.y * (c1.z * c2.w - c1.w * c2.z) - c1.y * (c0.z * c2.w - c0.w * c2.z) + c2.y * (c0.z * c1.w - c0.w * c1.z);
+
+            float m10 = c1.x * (c2.z * c3.w - c2.w * c3.z) - c2.x * (c1.z * c3.w - c1.w * c3.z) + c3.x * (c1.z * c2.w - c1.w * c2.z);
+            float m11 = c0.x * (c2.z * c3.w - c2.w * c3.z) - c2.x * (c0.z * c3.w - c0.w * c3.z) + c3.x * (c0.z * c2.w - c0.w * c2.z);
+            float m12 = c0.x * (c1.z * c3.w - c1.w * c3.z) - c1.x * (c0.z * c3.w - c0.w * c3.z) + c3.x * (c0.z * c1.w - c0.w * c1.z);
+            float m13 = c0.x * (c1.z * c2.w - c1.w * c2.z) - c1.x * (c0.z * c2.w - c0.w * c2.z) + c2.x * (c0.z * c1.w - c0.w * c1.z);
+
+            float m20 = c1.x * (c2.y * c3.w - c2.w * c3.y) - c2.x * (c1.y * c3.w - c1.w * c3.y) + c3.x * (c1.y * c2.w - c1.w * c2.y);
+            float m21 = c0.x * (c2.y * c3.w - c2.w * c3.y) - c2.x * (c0.y * c3.w - c0.w * c3.y) + c3.x * (c0.y * c2.w - c0.w * c2.y);
+            float m22 = c0.x * (c1.y * c3.w - c1.w * c3.y) - c1.x * (c0.y * c3.w - c0.w * c3.y) + c3.x * (c0.y * c1.w - c0.w * c1.y);
+            float m23 = c0.x * (c1.y * c2.w - c1.w * c2.y) - c1.x * (c0.y * c2.w - c0.w * c2.y) + c2.x * (c0.y * c1.w - c0.w * c1.y);
+
+            float m30 = c1.x * (c2.y * c3.z - c2.z * c3.y) - c2.x * (c1.y * c3.z - c1.z * c3.y) + c3.x * (c1.y * c2.z - c1.z * c2.y);
+            float m31 = c0.x * (c2.y * c3.z - c2.z * c3.y) - c2.x * (c0.y * c3.z - c0.z * c3.y) + c3.x * (c0.y * c2.z - c0.z * c2.y);
+            float m32 = c0.x * (c1.y * c3.z - c1.z * c3.y) - c1.x * (c0.y * c3.z - c0.z * c3.y) + c3.x * (c0.y * c1.z - c0.z * c1.y);
+            float m33 = c0.x * (c1.y * c2.z - c1.z * c2.y) - c1.x * (c0.y * c2.z - c0.z * c2.y) + c2.x * (c0.y * c1.z - c0.z * c1.y);
+            
+            float det = c0.x * m00 - c1.x * m01 + c2.x * m02 - c3.x * m03;
+            
+            return float4x4( m00, -m10,  m20, -m30,
+                            -m01,  m11, -m21,  m31,
+                             m02, -m12,  m22, -m32,
+                            -m03,  m13, -m23,  m33) * (1.0f / det);
+        }
         
         public static float4x4 scale(float3 vector)
         {
-            float4x4 matrix4x4 = new float4x4();
-            matrix4x4.m0 = new float4(vector.x,0.0f,0.0f,0.0f);
-            matrix4x4.m1 = new float4(0.0f,vector.y,0.0f,0.0f);
-            matrix4x4.m2 = new float4(0.0f,0.0f,vector.z,0.0f);
-            matrix4x4.m3 = new float4(0.0f, 0.0f, 0.0f, 1.0f);
-            return matrix4x4;
+            return float4x4(float4(vector.x, 0.0f, 0.0f, 0.0f),
+                            float4(0.0f, vector.y, 0.0f, 0.0f),
+                            float4(0.0f, 0.0f, vector.z, 0.0f),
+                            float4(0.0f, 0.0f, 0.0f, 1.0f));
         }
 
         public static float4x4 translate(float3 vector)
         {
-            float4x4 matrix4x4 = new float4x4();
-            matrix4x4.m0 = new float4(1.0f, 0.0f, 0.0f, 0.0f);
-            matrix4x4.m1 = new float4(0.0f, 1.0f, 0.0f, 0.0f);
-            matrix4x4.m2 = new float4(0.0f, 0.0f, 1.0f, 0.0f);
-            matrix4x4.m3 = new float4(vector.x, vector.y, vector.z, 1.0f);
-            return matrix4x4;
+            return float4x4(float4(1.0f, 0.0f, 0.0f, 0.0f),
+                            float4(0.0f, 1.0f, 0.0f, 0.0f),
+                            float4(0.0f, 0.0f, 1.0f, 0.0f),
+                            float4(vector.x, vector.y, vector.z, 1.0f));
         }        
 
         const float epsilon = 0.000001F;
-
-        public static float3x3 identity3
-        {
-            get { return new float3x3(new float3(1, 0, 0), new float3(0, 1, 0), new float3(0, 0, 1)); }
-        }
-        public static float4x4 identity4
-        {
-            get { return new float4x4(new float4(1, 0, 0, 0), new float4(0, 1, 0, 0), new float4(0, 0, 1, 0), new float4(0, 0, 0, 1)); }
-        }
-
+        
         public static float4x4 lookRotationToMatrix(float3 position, float3 forward, float3 up)
         {
             float3x3 rot = lookRotationToMatrix(forward, up);
 
             float4x4 matrix;
-            matrix.m0 = new float4(rot.m0, 0.0F);
-            matrix.m1 = new float4(rot.m1, 0.0F);
-            matrix.m2 = new float4(rot.m2, 0.0F);
-            matrix.m3 = new float4(position, 1.0F);
-
+            matrix.c0 = float4(rot.c0, 0.0F);
+            matrix.c1 = float4(rot.c1, 0.0F);
+            matrix.c2 = float4(rot.c2, 0.0F);
+            matrix.c3 = float4(position, 1.0F);
             return matrix;
         }
 
@@ -197,30 +308,21 @@
             // compute u0
             float mag = math.length(z);
             if (mag < epsilon)
-                return identity3;
+                return Mathematics.float3x3.identity;
             z /= mag;
 
             float3 x = math.cross(up, z);
             mag = math.length(x);
             if (mag < epsilon)
-                return identity3;
+                return Mathematics.float3x3.identity;
             x /= mag;
 
             float3 y = math.cross(z, x);
             float yLength = math.length(y);
             if (yLength < 0.9F || yLength > 1.1F)
-                return identity3;
+                return Mathematics.float3x3.identity;
 
-            return new float3x3(x, y, z);
+            return float3x3(x, y, z);
         }
-
-        /* @TODO:
-        [MethodImpl((MethodImplOptions)0x100)] // agressive inline
-        public static float determinant(float2x2 x) { throw new System.NotImplementedException(); }
-        [MethodImpl((MethodImplOptions)0x100)] // agressive inline
-        public static float determinant(float3x3 x) { throw new System.NotImplementedException(); }
-        [MethodImpl((MethodImplOptions)0x100)] // agressive inline
-        public static float determinant(float4x4 x) { throw new System.NotImplementedException(); }
-        */
     }
 }
