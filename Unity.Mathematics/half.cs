@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Unity.Mathematics
 {
+    [Serializable]
     public struct half : System.IEquatable<half>, IFormattable
     {
         public ushort value;
@@ -12,6 +13,9 @@ namespace Unity.Mathematics
 
         public static float MaxValue { get { return 65504.0f; } }
         public static float MinValue { get { return -65504.0f; } }
+
+        public static half MaxValueAsHalf => new half(MaxValue);
+        public static half MinValueAsHalf => new half(MinValue);
 
         /// <summary>Constructs a half value from a half value.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

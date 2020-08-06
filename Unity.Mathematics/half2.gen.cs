@@ -15,6 +15,7 @@ using System.Diagnostics;
 namespace Unity.Mathematics
 {
     [DebuggerTypeProxy(typeof(half2.DebuggerProxy))]
+    [System.Serializable]
     public partial struct half2 : System.IEquatable<half2>, IFormattable
     {
         public half x;
@@ -26,7 +27,7 @@ namespace Unity.Mathematics
         /// <summary>Constructs a half2 vector from two half values.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half2(half x, half y)
-        { 
+        {
             this.x = x;
             this.y = y;
         }
@@ -34,7 +35,7 @@ namespace Unity.Mathematics
         /// <summary>Constructs a half2 vector from a half2 vector.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half2(half2 xy)
-        { 
+        {
             this.x = xy.x;
             this.y = xy.y;
         }

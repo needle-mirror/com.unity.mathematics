@@ -15,6 +15,7 @@ using System.Diagnostics;
 namespace Unity.Mathematics
 {
     [DebuggerTypeProxy(typeof(half3.DebuggerProxy))]
+    [System.Serializable]
     public partial struct half3 : System.IEquatable<half3>, IFormattable
     {
         public half x;
@@ -27,7 +28,7 @@ namespace Unity.Mathematics
         /// <summary>Constructs a half3 vector from three half values.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(half x, half y, half z)
-        { 
+        {
             this.x = x;
             this.y = y;
             this.z = z;
@@ -36,7 +37,7 @@ namespace Unity.Mathematics
         /// <summary>Constructs a half3 vector from a half value and a half2 vector.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(half x, half2 yz)
-        { 
+        {
             this.x = x;
             this.y = yz.x;
             this.z = yz.y;
@@ -45,7 +46,7 @@ namespace Unity.Mathematics
         /// <summary>Constructs a half3 vector from a half2 vector and a half value.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(half2 xy, half z)
-        { 
+        {
             this.x = xy.x;
             this.y = xy.y;
             this.z = z;
@@ -54,7 +55,7 @@ namespace Unity.Mathematics
         /// <summary>Constructs a half3 vector from a half3 vector.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(half3 xyz)
-        { 
+        {
             this.x = xyz.x;
             this.y = xyz.y;
             this.z = xyz.z;
