@@ -9,23 +9,32 @@
 using System;
 using System.Runtime.CompilerServices;
 using System.Diagnostics;
+using Unity.IL2CPP.CompilerServices;
 
 #pragma warning disable 0660, 0661
 
 namespace Unity.Mathematics
 {
+    /// <summary>A 3 component vector of halfs.</summary>
     [DebuggerTypeProxy(typeof(half3.DebuggerProxy))]
     [System.Serializable]
+    [Il2CppEagerStaticClassConstruction]
     public partial struct half3 : System.IEquatable<half3>, IFormattable
     {
+        /// <summary>x component of the vector.</summary>
         public half x;
+        /// <summary>y component of the vector.</summary>
         public half y;
+        /// <summary>z component of the vector.</summary>
         public half z;
 
         /// <summary>half3 zero value.</summary>
         public static readonly half3 zero;
 
         /// <summary>Constructs a half3 vector from three half values.</summary>
+        /// <param name="x">The constructed vector's x component will be set to this value.</param>
+        /// <param name="y">The constructed vector's y component will be set to this value.</param>
+        /// <param name="z">The constructed vector's z component will be set to this value.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(half x, half y, half z)
         {
@@ -35,6 +44,8 @@ namespace Unity.Mathematics
         }
 
         /// <summary>Constructs a half3 vector from a half value and a half2 vector.</summary>
+        /// <param name="x">The constructed vector's x component will be set to this value.</param>
+        /// <param name="yz">The constructed vector's yz components will be set to this value.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(half x, half2 yz)
         {
@@ -44,6 +55,8 @@ namespace Unity.Mathematics
         }
 
         /// <summary>Constructs a half3 vector from a half2 vector and a half value.</summary>
+        /// <param name="xy">The constructed vector's xy components will be set to this value.</param>
+        /// <param name="z">The constructed vector's z component will be set to this value.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(half2 xy, half z)
         {
@@ -53,6 +66,7 @@ namespace Unity.Mathematics
         }
 
         /// <summary>Constructs a half3 vector from a half3 vector.</summary>
+        /// <param name="xyz">The constructed vector's xyz components will be set to this value.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(half3 xyz)
         {
@@ -62,6 +76,7 @@ namespace Unity.Mathematics
         }
 
         /// <summary>Constructs a half3 vector from a single half value by assigning it to every component.</summary>
+        /// <param name="v">half to convert to half3</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(half v)
         {
@@ -71,6 +86,7 @@ namespace Unity.Mathematics
         }
 
         /// <summary>Constructs a half3 vector from a single float value by converting it to half and assigning it to every component.</summary>
+        /// <param name="v">float to convert to half3</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(float v)
         {
@@ -80,6 +96,7 @@ namespace Unity.Mathematics
         }
 
         /// <summary>Constructs a half3 vector from a float3 vector by componentwise conversion.</summary>
+        /// <param name="v">float3 to convert to half3</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(float3 v)
         {
@@ -89,6 +106,7 @@ namespace Unity.Mathematics
         }
 
         /// <summary>Constructs a half3 vector from a single double value by converting it to half and assigning it to every component.</summary>
+        /// <param name="v">double to convert to half3</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(double v)
         {
@@ -98,6 +116,7 @@ namespace Unity.Mathematics
         }
 
         /// <summary>Constructs a half3 vector from a double3 vector by componentwise conversion.</summary>
+        /// <param name="v">double3 to convert to half3</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public half3(double3 v)
         {
@@ -108,54 +127,83 @@ namespace Unity.Mathematics
 
 
         /// <summary>Implicitly converts a single half value to a half3 vector by assigning it to every component.</summary>
+        /// <param name="v">half to convert to half3</param>
+        /// <returns>Converted value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator half3(half v) { return new half3(v); }
 
         /// <summary>Explicitly converts a single float value to a half3 vector by converting it to half and assigning it to every component.</summary>
+        /// <param name="v">float to convert to half3</param>
+        /// <returns>Converted value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator half3(float v) { return new half3(v); }
 
         /// <summary>Explicitly converts a float3 vector to a half3 vector by componentwise conversion.</summary>
+        /// <param name="v">float3 to convert to half3</param>
+        /// <returns>Converted value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator half3(float3 v) { return new half3(v); }
 
         /// <summary>Explicitly converts a single double value to a half3 vector by converting it to half and assigning it to every component.</summary>
+        /// <param name="v">double to convert to half3</param>
+        /// <returns>Converted value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator half3(double v) { return new half3(v); }
 
         /// <summary>Explicitly converts a double3 vector to a half3 vector by componentwise conversion.</summary>
+        /// <param name="v">double3 to convert to half3</param>
+        /// <returns>Converted value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator half3(double3 v) { return new half3(v); }
 
 
         /// <summary>Returns the result of a componentwise equality operation on two half3 vectors.</summary>
+        /// <param name="lhs">Left hand side half3 to use to compute componentwise equality.</param>
+        /// <param name="rhs">Right hand side half3 to use to compute componentwise equality.</param>
+        /// <returns>bool3 result of the componentwise equality.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool3 operator == (half3 lhs, half3 rhs) { return new bool3 (lhs.x == rhs.x, lhs.y == rhs.y, lhs.z == rhs.z); }
 
         /// <summary>Returns the result of a componentwise equality operation on a half3 vector and a half value.</summary>
+        /// <param name="lhs">Left hand side half3 to use to compute componentwise equality.</param>
+        /// <param name="rhs">Right hand side half to use to compute componentwise equality.</param>
+        /// <returns>bool3 result of the componentwise equality.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool3 operator == (half3 lhs, half rhs) { return new bool3 (lhs.x == rhs, lhs.y == rhs, lhs.z == rhs); }
 
         /// <summary>Returns the result of a componentwise equality operation on a half value and a half3 vector.</summary>
+        /// <param name="lhs">Left hand side half to use to compute componentwise equality.</param>
+        /// <param name="rhs">Right hand side half3 to use to compute componentwise equality.</param>
+        /// <returns>bool3 result of the componentwise equality.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool3 operator == (half lhs, half3 rhs) { return new bool3 (lhs == rhs.x, lhs == rhs.y, lhs == rhs.z); }
 
 
         /// <summary>Returns the result of a componentwise not equal operation on two half3 vectors.</summary>
+        /// <param name="lhs">Left hand side half3 to use to compute componentwise not equal.</param>
+        /// <param name="rhs">Right hand side half3 to use to compute componentwise not equal.</param>
+        /// <returns>bool3 result of the componentwise not equal.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool3 operator != (half3 lhs, half3 rhs) { return new bool3 (lhs.x != rhs.x, lhs.y != rhs.y, lhs.z != rhs.z); }
 
         /// <summary>Returns the result of a componentwise not equal operation on a half3 vector and a half value.</summary>
+        /// <param name="lhs">Left hand side half3 to use to compute componentwise not equal.</param>
+        /// <param name="rhs">Right hand side half to use to compute componentwise not equal.</param>
+        /// <returns>bool3 result of the componentwise not equal.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool3 operator != (half3 lhs, half rhs) { return new bool3 (lhs.x != rhs, lhs.y != rhs, lhs.z != rhs); }
 
         /// <summary>Returns the result of a componentwise not equal operation on a half value and a half3 vector.</summary>
+        /// <param name="lhs">Left hand side half to use to compute componentwise not equal.</param>
+        /// <param name="rhs">Right hand side half3 to use to compute componentwise not equal.</param>
+        /// <returns>bool3 result of the componentwise not equal.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool3 operator != (half lhs, half3 rhs) { return new bool3 (lhs != rhs.x, lhs != rhs.y, lhs != rhs.z); }
 
 
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xxxx
         {
@@ -164,6 +212,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xxxy
         {
@@ -172,6 +221,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xxxz
         {
@@ -180,6 +230,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xxyx
         {
@@ -188,6 +239,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xxyy
         {
@@ -196,6 +248,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xxyz
         {
@@ -204,6 +257,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xxzx
         {
@@ -212,6 +266,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xxzy
         {
@@ -220,6 +275,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xxzz
         {
@@ -228,6 +284,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xyxx
         {
@@ -236,6 +293,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xyxy
         {
@@ -244,6 +302,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xyxz
         {
@@ -252,6 +311,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xyyx
         {
@@ -260,6 +320,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xyyy
         {
@@ -268,6 +329,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xyyz
         {
@@ -276,6 +338,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xyzx
         {
@@ -284,6 +347,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xyzy
         {
@@ -292,6 +356,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xyzz
         {
@@ -300,6 +365,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xzxx
         {
@@ -308,6 +374,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xzxy
         {
@@ -316,6 +383,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xzxz
         {
@@ -324,6 +392,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xzyx
         {
@@ -332,6 +401,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xzyy
         {
@@ -340,6 +410,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xzyz
         {
@@ -348,6 +419,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xzzx
         {
@@ -356,6 +428,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xzzy
         {
@@ -364,6 +437,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 xzzz
         {
@@ -372,6 +446,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yxxx
         {
@@ -380,6 +455,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yxxy
         {
@@ -388,6 +464,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yxxz
         {
@@ -396,6 +473,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yxyx
         {
@@ -404,6 +482,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yxyy
         {
@@ -412,6 +491,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yxyz
         {
@@ -420,6 +500,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yxzx
         {
@@ -428,6 +509,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yxzy
         {
@@ -436,6 +518,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yxzz
         {
@@ -444,6 +527,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yyxx
         {
@@ -452,6 +536,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yyxy
         {
@@ -460,6 +545,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yyxz
         {
@@ -468,6 +554,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yyyx
         {
@@ -476,6 +563,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yyyy
         {
@@ -484,6 +572,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yyyz
         {
@@ -492,6 +581,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yyzx
         {
@@ -500,6 +590,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yyzy
         {
@@ -508,6 +599,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yyzz
         {
@@ -516,6 +608,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yzxx
         {
@@ -524,6 +617,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yzxy
         {
@@ -532,6 +626,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yzxz
         {
@@ -540,6 +635,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yzyx
         {
@@ -548,6 +644,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yzyy
         {
@@ -556,6 +653,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yzyz
         {
@@ -564,6 +662,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yzzx
         {
@@ -572,6 +671,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yzzy
         {
@@ -580,6 +680,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 yzzz
         {
@@ -588,6 +689,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zxxx
         {
@@ -596,6 +698,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zxxy
         {
@@ -604,6 +707,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zxxz
         {
@@ -612,6 +716,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zxyx
         {
@@ -620,6 +725,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zxyy
         {
@@ -628,6 +734,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zxyz
         {
@@ -636,6 +743,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zxzx
         {
@@ -644,6 +752,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zxzy
         {
@@ -652,6 +761,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zxzz
         {
@@ -660,6 +770,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zyxx
         {
@@ -668,6 +779,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zyxy
         {
@@ -676,6 +788,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zyxz
         {
@@ -684,6 +797,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zyyx
         {
@@ -692,6 +806,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zyyy
         {
@@ -700,6 +815,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zyyz
         {
@@ -708,6 +824,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zyzx
         {
@@ -716,6 +833,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zyzy
         {
@@ -724,6 +842,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zyzz
         {
@@ -732,6 +851,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zzxx
         {
@@ -740,6 +860,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zzxy
         {
@@ -748,6 +869,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zzxz
         {
@@ -756,6 +878,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zzyx
         {
@@ -764,6 +887,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zzyy
         {
@@ -772,6 +896,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zzyz
         {
@@ -780,6 +905,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zzzx
         {
@@ -788,6 +914,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zzzy
         {
@@ -796,6 +923,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half4 zzzz
         {
@@ -804,6 +932,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 xxx
         {
@@ -812,6 +941,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 xxy
         {
@@ -820,6 +950,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 xxz
         {
@@ -828,6 +959,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 xyx
         {
@@ -836,6 +968,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 xyy
         {
@@ -844,6 +977,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 xyz
         {
@@ -854,6 +988,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 xzx
         {
@@ -862,6 +997,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 xzy
         {
@@ -872,6 +1008,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 xzz
         {
@@ -880,6 +1017,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 yxx
         {
@@ -888,6 +1026,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 yxy
         {
@@ -896,6 +1035,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 yxz
         {
@@ -906,6 +1046,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 yyx
         {
@@ -914,6 +1055,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 yyy
         {
@@ -922,6 +1064,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 yyz
         {
@@ -930,6 +1073,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 yzx
         {
@@ -940,6 +1084,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 yzy
         {
@@ -948,6 +1093,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 yzz
         {
@@ -956,6 +1102,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 zxx
         {
@@ -964,6 +1111,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 zxy
         {
@@ -974,6 +1122,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 zxz
         {
@@ -982,6 +1131,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 zyx
         {
@@ -992,6 +1142,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 zyy
         {
@@ -1000,6 +1151,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 zyz
         {
@@ -1008,6 +1160,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 zzx
         {
@@ -1016,6 +1169,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 zzy
         {
@@ -1024,6 +1178,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half3 zzz
         {
@@ -1032,6 +1187,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half2 xx
         {
@@ -1040,6 +1196,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half2 xy
         {
@@ -1050,6 +1207,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half2 xz
         {
@@ -1060,6 +1218,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half2 yx
         {
@@ -1070,6 +1229,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half2 yy
         {
@@ -1078,6 +1238,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half2 yz
         {
@@ -1088,6 +1249,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half2 zx
         {
@@ -1098,6 +1260,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half2 zy
         {
@@ -1108,6 +1271,7 @@ namespace Unity.Mathematics
         }
 
 
+        /// <summary>Swizzles the vector.</summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public half2 zz
         {
@@ -1139,19 +1303,25 @@ namespace Unity.Mathematics
         }
 
         /// <summary>Returns true if the half3 is equal to a given half3, false otherwise.</summary>
+        /// <param name="rhs">Right hand side argument to compare equality with.</param>
+        /// <returns>The result of the equality comparison.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(half3 rhs) { return x == rhs.x && y == rhs.y && z == rhs.z; }
 
         /// <summary>Returns true if the half3 is equal to a given half3, false otherwise.</summary>
-        public override bool Equals(object o) { return Equals((half3)o); }
+        /// <param name="o">Right hand side argument to compare equality with.</param>
+        /// <returns>The result of the equality comparison.</returns>
+        public override bool Equals(object o) { return o is half3 converted && Equals(converted); }
 
 
         /// <summary>Returns a hash code for the half3.</summary>
+        /// <returns>The computed hash code.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode() { return (int)math.hash(this); }
 
 
         /// <summary>Returns a string representation of the half3.</summary>
+        /// <returns>String representation of the value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()
         {
@@ -1159,6 +1329,9 @@ namespace Unity.Mathematics
         }
 
         /// <summary>Returns a string representation of the half3 using a specified format and culture-specific format information.</summary>
+        /// <param name="format">Format string to use during string formatting.</param>
+        /// <param name="formatProvider">Format provider to use during string formatting.</param>
+        /// <returns>String representation of the value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string ToString(string format, IFormatProvider formatProvider)
         {
@@ -1183,42 +1356,66 @@ namespace Unity.Mathematics
     public static partial class math
     {
         /// <summary>Returns a half3 vector constructed from three half values.</summary>
+        /// <param name="x">The constructed vector's x component will be set to this value.</param>
+        /// <param name="y">The constructed vector's y component will be set to this value.</param>
+        /// <param name="z">The constructed vector's z component will be set to this value.</param>
+        /// <returns>half3 constructed from arguments.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half3 half3(half x, half y, half z) { return new half3(x, y, z); }
 
         /// <summary>Returns a half3 vector constructed from a half value and a half2 vector.</summary>
+        /// <param name="x">The constructed vector's x component will be set to this value.</param>
+        /// <param name="yz">The constructed vector's yz components will be set to this value.</param>
+        /// <returns>half3 constructed from arguments.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half3 half3(half x, half2 yz) { return new half3(x, yz); }
 
         /// <summary>Returns a half3 vector constructed from a half2 vector and a half value.</summary>
+        /// <param name="xy">The constructed vector's xy components will be set to this value.</param>
+        /// <param name="z">The constructed vector's z component will be set to this value.</param>
+        /// <returns>half3 constructed from arguments.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half3 half3(half2 xy, half z) { return new half3(xy, z); }
 
         /// <summary>Returns a half3 vector constructed from a half3 vector.</summary>
+        /// <param name="xyz">The constructed vector's xyz components will be set to this value.</param>
+        /// <returns>half3 constructed from arguments.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half3 half3(half3 xyz) { return new half3(xyz); }
 
         /// <summary>Returns a half3 vector constructed from a single half value by assigning it to every component.</summary>
+        /// <param name="v">half to convert to half3</param>
+        /// <returns>Converted value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half3 half3(half v) { return new half3(v); }
 
         /// <summary>Returns a half3 vector constructed from a single float value by converting it to half and assigning it to every component.</summary>
+        /// <param name="v">float to convert to half3</param>
+        /// <returns>Converted value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half3 half3(float v) { return new half3(v); }
 
         /// <summary>Return a half3 vector constructed from a float3 vector by componentwise conversion.</summary>
+        /// <param name="v">float3 to convert to half3</param>
+        /// <returns>Converted value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half3 half3(float3 v) { return new half3(v); }
 
         /// <summary>Returns a half3 vector constructed from a single double value by converting it to half and assigning it to every component.</summary>
+        /// <param name="v">double to convert to half3</param>
+        /// <returns>Converted value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half3 half3(double v) { return new half3(v); }
 
         /// <summary>Return a half3 vector constructed from a double3 vector by componentwise conversion.</summary>
+        /// <param name="v">double3 to convert to half3</param>
+        /// <returns>Converted value.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static half3 half3(double3 v) { return new half3(v); }
 
         /// <summary>Returns a uint hash code of a half3 vector.</summary>
+        /// <param name="v">Vector value to hash.</param>
+        /// <returns>uint hash of the argument.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static uint hash(half3 v)
         {
@@ -1230,6 +1427,8 @@ namespace Unity.Mathematics
         /// When multiple elements are to be hashes together, it can more efficient to calculate and combine wide hash
         /// that are only reduced to a narrow uint hash at the very end instead of at every step.
         /// </summary>
+        /// <param name="v">Vector value to hash.</param>
+        /// <returns>uint3 hash of the argument.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static uint3 hashwide(half3 v)
         {
