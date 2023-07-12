@@ -3341,5 +3341,860 @@ namespace Unity.Mathematics.Tests
                 }
             }
         }
+
+        [TestCompiler]
+        public static void square_float()
+        {
+            TestUtils.AreEqual(0.0f, math.square(0.0f));
+            TestUtils.AreEqual(0.25f, math.square(0.5f));
+            TestUtils.AreEqual(1.0f, math.square(1.0f));
+            TestUtils.AreEqual(4.0f, math.square(2.0f));
+            TestUtils.AreEqual(9.0f, math.square(3.0f));
+            TestUtils.AreEqual(0.0f, math.square(-0.0f));
+            TestUtils.AreEqual(0.25f, math.square(-0.5f));
+            TestUtils.AreEqual(1.0f, math.square(-1.0f));
+            TestUtils.AreEqual(4.0f, math.square(-2.0f));
+            TestUtils.AreEqual(9.0f, math.square(-3.0f));
+            TestUtils.AreEqual(0.0331537127494812011719f, math.square(0.182081609964370727539f));
+            TestUtils.AreEqual(0.0331537127494812011719f, math.square(-0.182081609964370727539f));
+            TestUtils.AreEqual(225642.59375f, math.square(475.018524169921875f));
+            TestUtils.AreEqual(225642.59375f, math.square(-475.018524169921875f));
+            TestUtils.IsTrue(math.isnan(math.square(float.NaN)));
+
+            // Square the largest finite number that will still produce a finite result.
+            TestUtils.AreEqual(3.4028232635611925616e+38f, math.square(18446742974197923840.0f));
+            TestUtils.AreEqual(3.4028232635611925616e+38f, math.square(-18446742974197923840.0f));
+
+            // Square the smallest finite number that will produce a non-finite result.
+            TestUtils.AreEqual(float.PositiveInfinity, math.square(18446744073709551616.0f));
+            TestUtils.AreEqual(float.PositiveInfinity, math.square(-18446744073709551616.0f));
+        }
+
+        [TestCompiler]
+        public static void square_float2()
+        {
+            TestUtils.AreEqual(new float2(0.0f), math.square(new float2(0.0f)));
+            TestUtils.AreEqual(new float2(0.25f), math.square(new float2(0.5f)));
+            TestUtils.AreEqual(new float2(1.0f), math.square(new float2(1.0f)));
+            TestUtils.AreEqual(new float2(4.0f), math.square(new float2(2.0f)));
+            TestUtils.AreEqual(new float2(9.0f), math.square(new float2(3.0f)));
+            TestUtils.AreEqual(new float2(0.0f), math.square(new float2(-0.0f)));
+            TestUtils.AreEqual(new float2(0.25f), math.square(new float2(-0.5f)));
+            TestUtils.AreEqual(new float2(1.0f), math.square(new float2(-1.0f)));
+            TestUtils.AreEqual(new float2(4.0f), math.square(new float2(-2.0f)));
+            TestUtils.AreEqual(new float2(9.0f), math.square(new float2(-3.0f)));
+            TestUtils.AreEqual(new float2(0.0331537127494812011719f), math.square(new float2(0.182081609964370727539f)));
+            TestUtils.AreEqual(new float2(0.0331537127494812011719f), math.square(new float2(-0.182081609964370727539f)));
+            TestUtils.AreEqual(new float2(225642.59375f), math.square(new float2(475.018524169921875f)));
+            TestUtils.AreEqual(new float2(225642.59375f), math.square(new float2(-475.018524169921875f)));
+            TestUtils.IsTrue(math.all(math.isnan(math.square(new float2(float.NaN)))));
+
+            // Square the largest finite number that will still produce a finite result.
+            TestUtils.AreEqual(new float2(3.4028232635611925616e+38f), math.square(new float2(18446742974197923840.0f)));
+            TestUtils.AreEqual(new float2(3.4028232635611925616e+38f), math.square(new float2(-18446742974197923840.0f)));
+
+            // Square the smallest finite number that will produce a non-finite result.
+            TestUtils.AreEqual(new float2(float.PositiveInfinity), math.square(new float2(18446744073709551616.0f)));
+            TestUtils.AreEqual(new float2(float.PositiveInfinity), math.square(new float2(-18446744073709551616.0f)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new float2(0.272176146507263183594f, 96307.6015625f), math.square(new float2(0.521705031394958496094f, -310.33465576171875f)));
+        }
+
+        [TestCompiler]
+        public static void square_float3()
+        {
+            TestUtils.AreEqual(new float3(0.0f), math.square(new float3(0.0f)));
+            TestUtils.AreEqual(new float3(0.25f), math.square(new float3(0.5f)));
+            TestUtils.AreEqual(new float3(1.0f), math.square(new float3(1.0f)));
+            TestUtils.AreEqual(new float3(4.0f), math.square(new float3(2.0f)));
+            TestUtils.AreEqual(new float3(9.0f), math.square(new float3(3.0f)));
+            TestUtils.AreEqual(new float3(0.0f), math.square(new float3(-0.0f)));
+            TestUtils.AreEqual(new float3(0.25f), math.square(new float3(-0.5f)));
+            TestUtils.AreEqual(new float3(1.0f), math.square(new float3(-1.0f)));
+            TestUtils.AreEqual(new float3(4.0f), math.square(new float3(-2.0f)));
+            TestUtils.AreEqual(new float3(9.0f), math.square(new float3(-3.0f)));
+            TestUtils.AreEqual(new float3(0.0331537127494812011719f), math.square(new float3(0.182081609964370727539f)));
+            TestUtils.AreEqual(new float3(0.0331537127494812011719f), math.square(new float3(-0.182081609964370727539f)));
+            TestUtils.AreEqual(new float3(225642.59375f), math.square(new float3(475.018524169921875f)));
+            TestUtils.AreEqual(new float3(225642.59375f), math.square(new float3(-475.018524169921875f)));
+            TestUtils.IsTrue(math.all(math.isnan(math.square(new float3(float.NaN)))));
+
+            // Square the largest finite number that will still produce a finite result.
+            TestUtils.AreEqual(new float3(3.4028232635611925616e+38f), math.square(new float3(18446742974197923840.0f)));
+            TestUtils.AreEqual(new float3(3.4028232635611925616e+38f), math.square(new float3(-18446742974197923840.0f)));
+
+            // Square the smallest finite number that will produce a non-finite result.
+            TestUtils.AreEqual(new float3(float.PositiveInfinity), math.square(new float3(18446744073709551616.0f)));
+            TestUtils.AreEqual(new float3(float.PositiveInfinity), math.square(new float3(-18446744073709551616.0f)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new float3(0.272176146507263183594f, 96307.6015625f, 5591.6337890625f), math.square(new float3(0.521705031394958496094f, -310.33465576171875f, -74.77722930908203125f)));
+        }
+
+        [TestCompiler]
+        public static void square_float4()
+        {
+            TestUtils.AreEqual(new float4(0.0f), math.square(new float4(0.0f)));
+            TestUtils.AreEqual(new float4(0.25f), math.square(new float4(0.5f)));
+            TestUtils.AreEqual(new float4(1.0f), math.square(new float4(1.0f)));
+            TestUtils.AreEqual(new float4(4.0f), math.square(new float4(2.0f)));
+            TestUtils.AreEqual(new float4(9.0f), math.square(new float4(3.0f)));
+            TestUtils.AreEqual(new float4(0.0f), math.square(new float4(-0.0f)));
+            TestUtils.AreEqual(new float4(0.25f), math.square(new float4(-0.5f)));
+            TestUtils.AreEqual(new float4(1.0f), math.square(new float4(-1.0f)));
+            TestUtils.AreEqual(new float4(4.0f), math.square(new float4(-2.0f)));
+            TestUtils.AreEqual(new float4(9.0f), math.square(new float4(-3.0f)));
+            TestUtils.AreEqual(new float4(0.0331537127494812011719f), math.square(new float4(0.182081609964370727539f)));
+            TestUtils.AreEqual(new float4(0.0331537127494812011719f), math.square(new float4(-0.182081609964370727539f)));
+            TestUtils.AreEqual(new float4(225642.59375f), math.square(new float4(475.018524169921875f)));
+            TestUtils.AreEqual(new float4(225642.59375f), math.square(new float4(-475.018524169921875f)));
+            TestUtils.IsTrue(math.all(math.isnan(math.square(new float4(float.NaN)))));
+
+            // Square the largest finite number that will still produce a finite result.
+            TestUtils.AreEqual(new float4(3.4028232635611925616e+38f), math.square(new float4(18446742974197923840.0f)));
+            TestUtils.AreEqual(new float4(3.4028232635611925616e+38f), math.square(new float4(-18446742974197923840.0f)));
+
+            // Square the smallest finite number that will produce a non-finite result.
+            TestUtils.AreEqual(new float4(float.PositiveInfinity), math.square(new float4(18446744073709551616.0f)));
+            TestUtils.AreEqual(new float4(float.PositiveInfinity), math.square(new float4(-18446744073709551616.0f)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new float4(0.272176146507263183594f, 96307.6015625f, 5591.6337890625f, 152764.28125f), math.square(new float4(0.521705031394958496094f, -310.33465576171875f, -74.77722930908203125f, 390.8507080078125f)));
+        }
+
+        [TestCompiler]
+        public static void square_double()
+        {
+            TestUtils.AreEqual(0.0, math.square(0.0));
+            TestUtils.AreEqual(0.25, math.square(0.5));
+            TestUtils.AreEqual(1.0, math.square(1.0));
+            TestUtils.AreEqual(4.0, math.square(2.0));
+            TestUtils.AreEqual(9.0, math.square(3.0));
+            TestUtils.AreEqual(0.0, math.square(-0.0));
+            TestUtils.AreEqual(0.25, math.square(-0.5));
+            TestUtils.AreEqual(1.0, math.square(-1.0));
+            TestUtils.AreEqual(4.0, math.square(-2.0));
+            TestUtils.AreEqual(9.0, math.square(-3.0));
+            TestUtils.AreEqual(0.0331537126872172294156, math.square(0.182081609964370727539));
+            TestUtils.AreEqual(0.0331537126872172294156, math.square(-0.182081609964370727539));
+            TestUtils.AreEqual(225642.598304570652544, math.square(475.018524169921875));
+            TestUtils.AreEqual(225642.598304570652544, math.square(-475.018524169921875));
+            TestUtils.IsTrue(math.isnan(math.square(double.NaN)));
+
+            // Square the largest finite number that will still produce a finite result.
+            TestUtils.AreEqual(1.79769313486231550856e+308, math.square(1.3407807929942595611e+154));
+            TestUtils.AreEqual(1.79769313486231550856e+308, math.square(-1.3407807929942595611e+154));
+
+            // Square the smallest finite number that will produce a non-finite result.
+            TestUtils.AreEqual(double.PositiveInfinity, math.square(1.34078079299425970996e+154));
+            TestUtils.AreEqual(double.PositiveInfinity, math.square(-1.34078079299425970996e+154));
+        }
+
+        [TestCompiler]
+        public static void square_double2()
+        {
+            TestUtils.AreEqual(new double2(0.0), math.square(new double2(0.0)));
+            TestUtils.AreEqual(new double2(0.25), math.square(new double2(0.5)));
+            TestUtils.AreEqual(new double2(1.0), math.square(new double2(1.0)));
+            TestUtils.AreEqual(new double2(4.0), math.square(new double2(2.0)));
+            TestUtils.AreEqual(new double2(9.0), math.square(new double2(3.0)));
+            TestUtils.AreEqual(new double2(0.0), math.square(new double2(-0.0)));
+            TestUtils.AreEqual(new double2(0.25), math.square(new double2(-0.5)));
+            TestUtils.AreEqual(new double2(1.0), math.square(new double2(-1.0)));
+            TestUtils.AreEqual(new double2(4.0), math.square(new double2(-2.0)));
+            TestUtils.AreEqual(new double2(9.0), math.square(new double2(-3.0)));
+            TestUtils.AreEqual(new double2(0.0331537126872172294156), math.square(new double2(0.182081609964370727539)));
+            TestUtils.AreEqual(new double2(0.0331537126872172294156), math.square(new double2(-0.182081609964370727539)));
+            TestUtils.AreEqual(new double2(225642.598304570652544), math.square(new double2(475.018524169921875)));
+            TestUtils.AreEqual(new double2(225642.598304570652544), math.square(new double2(-475.018524169921875)));
+            TestUtils.IsTrue(math.all(math.isnan(math.square(new double2(double.NaN)))));
+
+            // Square the largest finite number that will still produce a finite result.
+            TestUtils.AreEqual(new double2(1.79769313486231550856e+308), math.square(new double2(1.3407807929942595611e+154)));
+            TestUtils.AreEqual(new double2(1.79769313486231550856e+308), math.square(new double2(-1.3407807929942595611e+154)));
+
+            // Square the smallest finite number that will produce a non-finite result.
+            TestUtils.AreEqual(new double2(double.PositiveInfinity), math.square(new double2(1.34078079299425970996e+154)));
+            TestUtils.AreEqual(new double2(double.PositiveInfinity), math.square(new double2(-1.34078079299425970996e+154)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new double2(0.272176139782814630053, 96307.5985667444765568), math.square(new double2(0.521705031394958496094, -310.33465576171875)));
+        }
+
+        [TestCompiler]
+        public static void square_double3()
+        {
+            TestUtils.AreEqual(new double3(0.0), math.square(new double3(0.0)));
+            TestUtils.AreEqual(new double3(0.25), math.square(new double3(0.5)));
+            TestUtils.AreEqual(new double3(1.0), math.square(new double3(1.0)));
+            TestUtils.AreEqual(new double3(4.0), math.square(new double3(2.0)));
+            TestUtils.AreEqual(new double3(9.0), math.square(new double3(3.0)));
+            TestUtils.AreEqual(new double3(0.0), math.square(new double3(-0.0)));
+            TestUtils.AreEqual(new double3(0.25), math.square(new double3(-0.5)));
+            TestUtils.AreEqual(new double3(1.0), math.square(new double3(-1.0)));
+            TestUtils.AreEqual(new double3(4.0), math.square(new double3(-2.0)));
+            TestUtils.AreEqual(new double3(9.0), math.square(new double3(-3.0)));
+            TestUtils.AreEqual(new double3(0.0331537126872172294156), math.square(new double3(0.182081609964370727539)));
+            TestUtils.AreEqual(new double3(0.0331537126872172294156), math.square(new double3(-0.182081609964370727539)));
+            TestUtils.AreEqual(new double3(225642.598304570652544), math.square(new double3(475.018524169921875)));
+            TestUtils.AreEqual(new double3(225642.598304570652544), math.square(new double3(-475.018524169921875)));
+            TestUtils.IsTrue(math.all(math.isnan(math.square(new double3(double.NaN)))));
+
+            // Square the largest finite number that will still produce a finite result.
+            TestUtils.AreEqual(new double3(1.79769313486231550856e+308), math.square(new double3(1.3407807929942595611e+154)));
+            TestUtils.AreEqual(new double3(1.79769313486231550856e+308), math.square(new double3(-1.3407807929942595611e+154)));
+
+            // Square the smallest finite number that will produce a non-finite result.
+            TestUtils.AreEqual(new double3(double.PositiveInfinity), math.square(new double3(1.34078079299425970996e+154)));
+            TestUtils.AreEqual(new double3(double.PositiveInfinity), math.square(new double3(-1.34078079299425970996e+154)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new double3(0.272176139782814630053, 96307.5985667444765568, 5591.63402314303675666), math.square(new double3(0.521705031394958496094, -310.33465576171875, -74.77722930908203125)));
+        }
+
+        [TestCompiler]
+        public static void square_double4()
+        {
+            TestUtils.AreEqual(new double4(0.0), math.square(new double4(0.0)));
+            TestUtils.AreEqual(new double4(0.25), math.square(new double4(0.5)));
+            TestUtils.AreEqual(new double4(1.0), math.square(new double4(1.0)));
+            TestUtils.AreEqual(new double4(4.0), math.square(new double4(2.0)));
+            TestUtils.AreEqual(new double4(9.0), math.square(new double4(3.0)));
+            TestUtils.AreEqual(new double4(0.0), math.square(new double4(-0.0)));
+            TestUtils.AreEqual(new double4(0.25), math.square(new double4(-0.5)));
+            TestUtils.AreEqual(new double4(1.0), math.square(new double4(-1.0)));
+            TestUtils.AreEqual(new double4(4.0), math.square(new double4(-2.0)));
+            TestUtils.AreEqual(new double4(9.0), math.square(new double4(-3.0)));
+            TestUtils.AreEqual(new double4(0.0331537126872172294156), math.square(new double4(0.182081609964370727539)));
+            TestUtils.AreEqual(new double4(0.0331537126872172294156), math.square(new double4(-0.182081609964370727539)));
+            TestUtils.AreEqual(new double4(225642.598304570652544), math.square(new double4(475.018524169921875)));
+            TestUtils.AreEqual(new double4(225642.598304570652544), math.square(new double4(-475.018524169921875)));
+            TestUtils.IsTrue(math.all(math.isnan(math.square(new double4(double.NaN)))));
+
+            // Square the largest finite number that will still produce a finite result.
+            TestUtils.AreEqual(new double4(1.79769313486231550856e+308), math.square(new double4(1.3407807929942595611e+154)));
+            TestUtils.AreEqual(new double4(1.79769313486231550856e+308), math.square(new double4(-1.3407807929942595611e+154)));
+
+            // Square the smallest finite number that will produce a non-finite result.
+            TestUtils.AreEqual(new double4(double.PositiveInfinity), math.square(new double4(1.34078079299425970996e+154)));
+            TestUtils.AreEqual(new double4(double.PositiveInfinity), math.square(new double4(-1.34078079299425970996e+154)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new double4(0.272176139782814630053, 96307.5985667444765568 /*96307.5985667444765568*/, 5591.63402314303675666 /*5591.6337890625*/, 152764.275950208306313 /*152764.28125*/), math.square(new double4(0.521705031394958496094, -310.33465576171875, -74.77722930908203125, 390.8507080078125)));
+        }
+
+        [TestCompiler]
+        public static void square_int()
+        {
+            TestUtils.AreEqual(0, math.square(0));
+            TestUtils.AreEqual(1, math.square(-1));
+            TestUtils.AreEqual(4, math.square(-2));
+            TestUtils.AreEqual(9, math.square(-3));
+            TestUtils.AreEqual(16, math.square(-4));
+            TestUtils.AreEqual(152399025, math.square(-12345));
+            TestUtils.AreEqual(2147395600, math.square(-46340));
+            TestUtils.AreEqual(0, math.square(0));
+            TestUtils.AreEqual(1, math.square(1));
+            TestUtils.AreEqual(4, math.square(2));
+            TestUtils.AreEqual(9, math.square(3));
+            TestUtils.AreEqual(16, math.square(4));
+            TestUtils.AreEqual(152399025, math.square(12345));
+            TestUtils.AreEqual(2147395600, math.square(46340));
+
+            // Overflow cases.
+            TestUtils.AreEqual(-2147479015, math.square(46341));
+            TestUtils.AreEqual(-2147479015, math.square(-46341));
+            TestUtils.AreEqual(-1938485248, math.square(123456));
+            TestUtils.AreEqual(-1938485248, math.square(-123456));
+            TestUtils.AreEqual(1, math.square(2147483647));
+            TestUtils.AreEqual(1, math.square(-2147483647));
+            TestUtils.AreEqual(0, math.square(-2147483648));
+        }
+
+        [TestCompiler]
+        public static void square_int2()
+        {
+            TestUtils.AreEqual(new int2(0), math.square(new int2(0)));
+            TestUtils.AreEqual(new int2(1), math.square(new int2(-1)));
+            TestUtils.AreEqual(new int2(4), math.square(new int2(-2)));
+            TestUtils.AreEqual(new int2(9), math.square(new int2(-3)));
+            TestUtils.AreEqual(new int2(16), math.square(new int2(-4)));
+            TestUtils.AreEqual(new int2(152399025), math.square(new int2(-12345)));
+            TestUtils.AreEqual(new int2(2147395600), math.square(new int2(-46340)));
+            TestUtils.AreEqual(new int2(0), math.square(new int2(0)));
+            TestUtils.AreEqual(new int2(1), math.square(new int2(1)));
+            TestUtils.AreEqual(new int2(4), math.square(new int2(2)));
+            TestUtils.AreEqual(new int2(9), math.square(new int2(3)));
+            TestUtils.AreEqual(new int2(16), math.square(new int2(4)));
+            TestUtils.AreEqual(new int2(152399025), math.square(new int2(12345)));
+            TestUtils.AreEqual(new int2(2147395600), math.square(new int2(46340)));
+
+            // Overflow cases.
+            TestUtils.AreEqual(new int2(-2147479015), math.square(new int2(46341)));
+            TestUtils.AreEqual(new int2(-2147479015), math.square(new int2(-46341)));
+            TestUtils.AreEqual(new int2(-1938485248), math.square(new int2(123456)));
+            TestUtils.AreEqual(new int2(-1938485248), math.square(new int2(-123456)));
+            TestUtils.AreEqual(new int2(1), math.square(new int2(2147483647)));
+            TestUtils.AreEqual(new int2(1), math.square(new int2(-2147483647)));
+            TestUtils.AreEqual(new int2(0), math.square(new int2(-2147483648)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new int2(2121580241, -685235535), math.square(new int2(-831443639, 1415191751)));
+        }
+
+        [TestCompiler]
+        public static void square_int3()
+        {
+            TestUtils.AreEqual(new int3(0), math.square(new int3(0)));
+            TestUtils.AreEqual(new int3(1), math.square(new int3(-1)));
+            TestUtils.AreEqual(new int3(4), math.square(new int3(-2)));
+            TestUtils.AreEqual(new int3(9), math.square(new int3(-3)));
+            TestUtils.AreEqual(new int3(16), math.square(new int3(-4)));
+            TestUtils.AreEqual(new int3(152399025), math.square(new int3(-12345)));
+            TestUtils.AreEqual(new int3(2147395600), math.square(new int3(-46340)));
+            TestUtils.AreEqual(new int3(0), math.square(new int3(0)));
+            TestUtils.AreEqual(new int3(1), math.square(new int3(1)));
+            TestUtils.AreEqual(new int3(4), math.square(new int3(2)));
+            TestUtils.AreEqual(new int3(9), math.square(new int3(3)));
+            TestUtils.AreEqual(new int3(16), math.square(new int3(4)));
+            TestUtils.AreEqual(new int3(152399025), math.square(new int3(12345)));
+            TestUtils.AreEqual(new int3(2147395600), math.square(new int3(46340)));
+
+            // Overflow cases.
+            TestUtils.AreEqual(new int3(-2147479015), math.square(new int3(46341)));
+            TestUtils.AreEqual(new int3(-2147479015), math.square(new int3(-46341)));
+            TestUtils.AreEqual(new int3(-1938485248), math.square(new int3(123456)));
+            TestUtils.AreEqual(new int3(-1938485248), math.square(new int3(-123456)));
+            TestUtils.AreEqual(new int3(1), math.square(new int3(2147483647)));
+            TestUtils.AreEqual(new int3(1), math.square(new int3(-2147483647)));
+            TestUtils.AreEqual(new int3(0), math.square(new int3(-2147483648)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new int3(2121580241, -685235535, 468048505), math.square(new int3(-831443639, 1415191751, -178100469)));
+        }
+
+        [TestCompiler]
+        public static void square_int4()
+        {
+            TestUtils.AreEqual(new int4(0), math.square(new int4(0)));
+            TestUtils.AreEqual(new int4(1), math.square(new int4(-1)));
+            TestUtils.AreEqual(new int4(4), math.square(new int4(-2)));
+            TestUtils.AreEqual(new int4(9), math.square(new int4(-3)));
+            TestUtils.AreEqual(new int4(16), math.square(new int4(-4)));
+            TestUtils.AreEqual(new int4(152399025), math.square(new int4(-12345)));
+            TestUtils.AreEqual(new int4(2147395600), math.square(new int4(-46340)));
+            TestUtils.AreEqual(new int4(0), math.square(new int4(0)));
+            TestUtils.AreEqual(new int4(1), math.square(new int4(1)));
+            TestUtils.AreEqual(new int4(4), math.square(new int4(2)));
+            TestUtils.AreEqual(new int4(9), math.square(new int4(3)));
+            TestUtils.AreEqual(new int4(16), math.square(new int4(4)));
+            TestUtils.AreEqual(new int4(152399025), math.square(new int4(12345)));
+            TestUtils.AreEqual(new int4(2147395600), math.square(new int4(46340)));
+
+            // Overflow cases.
+            TestUtils.AreEqual(new int4(-2147479015), math.square(new int4(46341)));
+            TestUtils.AreEqual(new int4(-2147479015), math.square(new int4(-46341)));
+            TestUtils.AreEqual(new int4(-1938485248), math.square(new int4(123456)));
+            TestUtils.AreEqual(new int4(-1938485248), math.square(new int4(-123456)));
+            TestUtils.AreEqual(new int4(1), math.square(new int4(2147483647)));
+            TestUtils.AreEqual(new int4(1), math.square(new int4(-2147483647)));
+            TestUtils.AreEqual(new int4(0), math.square(new int4(-2147483648)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new int4(2121580241, -685235535, 468048505, -1902728316), math.square(new int4(-831443639, 1415191751, -178100469, 1331775970)));
+        }
+
+        [TestCompiler]
+        public static void square_uint()
+        {
+            TestUtils.AreEqual(0u, math.square(0u));
+            TestUtils.AreEqual(1u, math.square(1u));
+            TestUtils.AreEqual(4u, math.square(2u));
+            TestUtils.AreEqual(9u, math.square(3u));
+            TestUtils.AreEqual(16u, math.square(4u));
+            TestUtils.AreEqual(152399025u, math.square(12345u));
+            TestUtils.AreEqual(2147395600u, math.square(46340u));
+            TestUtils.AreEqual(2147488281u, math.square(46341u));
+
+            // Overflow cases.
+            TestUtils.AreEqual(1u, math.square(4294967295u));
+            TestUtils.AreEqual(1u, math.square(2147483647u));
+            TestUtils.AreEqual(2356482048u, math.square(123456u));
+        }
+
+        [TestCompiler]
+        public static void square_uint2()
+        {
+            TestUtils.AreEqual(new uint2(0u), math.square(new uint2(0u)));
+            TestUtils.AreEqual(new uint2(1u), math.square(new uint2(1u)));
+            TestUtils.AreEqual(new uint2(4u), math.square(new uint2(2u)));
+            TestUtils.AreEqual(new uint2(9u), math.square(new uint2(3u)));
+            TestUtils.AreEqual(new uint2(16u), math.square(new uint2(4u)));
+            TestUtils.AreEqual(new uint2(152399025u), math.square(new uint2(12345u)));
+            TestUtils.AreEqual(new uint2(2147395600u), math.square(new uint2(46340u)));
+            TestUtils.AreEqual(new uint2(2147488281u), math.square(new uint2(46341u)));
+
+            // Overflow cases.
+            TestUtils.AreEqual(new uint2(1u), math.square(new uint2(4294967295u)));
+            TestUtils.AreEqual(new uint2(1u), math.square(new uint2(2147483647u)));
+            TestUtils.AreEqual(new uint2(2356482048u), math.square(new uint2(123456u)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new uint2(3982663844u, 503153673u), math.square(new uint2(779359642u, 2488899075u)));
+        }
+
+        [TestCompiler]
+        public static void square_uint3()
+        {
+            TestUtils.AreEqual(new uint3(0u), math.square(new uint3(0u)));
+            TestUtils.AreEqual(new uint3(1u), math.square(new uint3(1u)));
+            TestUtils.AreEqual(new uint3(4u), math.square(new uint3(2u)));
+            TestUtils.AreEqual(new uint3(9u), math.square(new uint3(3u)));
+            TestUtils.AreEqual(new uint3(16u), math.square(new uint3(4u)));
+            TestUtils.AreEqual(new uint3(152399025u), math.square(new uint3(12345u)));
+            TestUtils.AreEqual(new uint3(2147395600u), math.square(new uint3(46340u)));
+            TestUtils.AreEqual(new uint3(2147488281u), math.square(new uint3(46341u)));
+
+            // Overflow cases.
+            TestUtils.AreEqual(new uint3(1u), math.square(new uint3(4294967295u)));
+            TestUtils.AreEqual(new uint3(1u), math.square(new uint3(2147483647u)));
+            TestUtils.AreEqual(new uint3(2356482048u), math.square(new uint3(123456u)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new uint3(3982663844u, 503153673u, 4101817232u), math.square(new uint3(779359642u, 2488899075u, 407772844u)));
+        }
+
+        [TestCompiler]
+        public static void square_uint4()
+        {
+            TestUtils.AreEqual(new uint4(0u), math.square(new uint4(0u)));
+            TestUtils.AreEqual(new uint4(1u), math.square(new uint4(1u)));
+            TestUtils.AreEqual(new uint4(4u), math.square(new uint4(2u)));
+            TestUtils.AreEqual(new uint4(9u), math.square(new uint4(3u)));
+            TestUtils.AreEqual(new uint4(16u), math.square(new uint4(4u)));
+            TestUtils.AreEqual(new uint4(152399025u), math.square(new uint4(12345u)));
+            TestUtils.AreEqual(new uint4(2147395600u), math.square(new uint4(46340u)));
+            TestUtils.AreEqual(new uint4(2147488281u), math.square(new uint4(46341u)));
+
+            // Overflow cases.
+            TestUtils.AreEqual(new uint4(1u), math.square(new uint4(4294967295u)));
+            TestUtils.AreEqual(new uint4(1u), math.square(new uint4(2147483647u)));
+            TestUtils.AreEqual(new uint4(2356482048u), math.square(new uint4(123456u)));
+
+            // Random inputs.
+            TestUtils.AreEqual(new uint4(3982663844u, 503153673u, 4101817232u, 2726088561u), math.square(new uint4(779359642u, 2488899075u, 407772844u, 2862593383u)));
+        }
+
+        // This utility function comes from footnote 1 of "Building an Orthonormal Basis, Revisited" by
+        // Duff, Burgess, Christensen, Hery, Kensler, Liani and Villemin.
+        //
+        // It simply computes the average squared error of the basis vectors by taking into account
+        // their lengths (which should be one) and dot products (which should be zero).
+        //
+        // https://graphics.pixar.com/library/OrthonormalB/paper.pdf
+        static double OrthonormalBasisSquaredError(double3 v1, double3 v2, double3 v3)
+        {
+            var d1 = math.length(v1) - 1.0;
+            var d2 = math.length(v2) - 1.0;
+            var d3 = math.length(v3) - 1.0;
+            var dot1 = math.dot(v1, v2);
+            var dot2 = math.dot(v1, v3);
+            var dot3 = math.dot(v2, v3);
+
+            return ((d1 * d1) + (d2 * d2) + (d3 * d3) + (dot1 * dot1) + (dot2 * dot2) + (dot3 * dot3)) / 6.0;
+        }
+
+        // The value chosen for tolerance here is the maximum error observed in
+        // "Building an Orthonormal Basis, Revisited" table 1.
+        private const double kOrthonormalBasisSqErrorTolerance = 1.04e-7d;
+
+        [TestCompiler]
+        public static void orthonormal_basis_float()
+        {
+            var random = new Random(8189782u);
+
+            for (int i = 0; i < 10000; ++i)
+            {
+                var v1 = random.NextFloat3Direction();
+                var v2 = new float3();
+                var v3 = new float3();
+                math.orthonormal_basis(v1, out v2, out v3);
+                TestUtils.IsTrue(OrthonormalBasisSquaredError(v1, v2, v3) < kOrthonormalBasisSqErrorTolerance);
+            }
+        }
+
+        [TestCompiler]
+        public static void orthonormal_basis_double()
+        {
+            var random = new Random(99917872u);
+
+            for (int i = 0; i < 10000; ++i)
+            {
+                var v1 = random.NextDouble3Direction();
+                var v2 = new double3();
+                var v3 = new double3();
+                math.orthonormal_basis(v1, out v2, out v3);
+                TestUtils.IsTrue(OrthonormalBasisSquaredError(v1, v2, v3) < kOrthonormalBasisSqErrorTolerance);
+            }
+        }
+
+        [TestCompiler]
+        public static void chgsign_float()
+        {
+            float c = chgsign(1f, -1f);
+            TestUtils.AreEqual(-1f, c);
+
+            c = chgsign(1f, 1f);
+            TestUtils.AreEqual(1f, c);
+
+            c = chgsign(-1f, -1f);
+            TestUtils.AreEqual(1f, c);
+
+            c = chgsign(-1f, 1f);
+            TestUtils.AreEqual(-1f, c);
+
+            c = chgsign(-1f, 0f);
+            TestUtils.AreEqual(-1f, c);
+
+            c = chgsign(-1f, -0f);
+            TestUtils.AreEqual(1f, c);
+
+            c = chgsign(1f, TestUtils.SignedFloatQNaN());
+            TestUtils.AreEqual(-1f, c);
+
+            c = chgsign(-1f, TestUtils.SignedFloatQNaN());
+            TestUtils.AreEqual(1f, c);
+
+            c = chgsign(1f, TestUtils.UnsignedFloatQNaN());
+            TestUtils.AreEqual(1f, c);
+
+            c = chgsign(-1f, TestUtils.UnsignedFloatQNaN());
+            TestUtils.AreEqual(-1f, c);
+
+            c = chgsign(1f, INFINITY);
+            TestUtils.AreEqual(1f, c);
+
+            c = chgsign(-1f, INFINITY);
+            TestUtils.AreEqual(-1f, c);
+
+            c = chgsign(1f, -INFINITY);
+            TestUtils.AreEqual(-1f, c);
+
+            c = chgsign(-1f, -INFINITY);
+            TestUtils.AreEqual(1f, c);
+
+            c = chgsign(TestUtils.UnsignedFloatQNaN(), 1f);
+            TestUtils.IsTrue(isnan(c));
+            TestUtils.AreEqual(asuint(TestUtils.UnsignedFloatQNaN()), asuint(c));
+
+            c = chgsign(TestUtils.UnsignedFloatQNaN(), -1f);
+            TestUtils.IsTrue(isnan(c));
+            TestUtils.AreEqual(asuint(TestUtils.SignedFloatQNaN()), asuint(c));
+
+            c = chgsign(0f, 1f);
+            TestUtils.AreEqual(0f, c);
+            TestUtils.AreEqual(0u, asuint(c));
+
+            c = chgsign(0f, -1f);
+            TestUtils.AreEqual(0f, c);
+            TestUtils.AreEqual(asuint(TestUtils.SignedFloatZero()), asuint(c));
+        }
+
+        [TestCompiler]
+        public static void chgsign_float2()
+        {
+            float2 c = chgsign(float2(1f, -2f), float2(-1f, 23.548f));
+            TestUtils.AreEqual(float2(-1f, -2f), c);
+
+            c = chgsign(float2(-1f), float2(-1f, 1f));
+            TestUtils.AreEqual(float2(1f, -1f), c);
+
+            c = chgsign(float2(-1f), float2(1f, -1f));
+            TestUtils.AreEqual(float2(-1f, 1f), c);
+
+            c = chgsign(float2(-1f), float2(TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN()));
+            TestUtils.AreEqual(float2(1f, -1f), c);
+
+            c = chgsign(float2(-1f), float2(TestUtils.UnsignedFloatQNaN(), TestUtils.SignedFloatQNaN()));
+            TestUtils.AreEqual(float2(-1f, 1f), c);
+
+            c = chgsign(float2(TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN()), float2(-1f, 1f));
+            TestUtils.IsTrue(all(isnan(c)));
+            TestUtils.AreEqual(asuint(float2(TestUtils.UnsignedFloatQNaN())), asuint(c));
+
+            c = chgsign(float2(TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN()), float2(1f, -1f));
+            TestUtils.IsTrue(all(isnan(c)));
+            TestUtils.AreEqual(asuint(float2(TestUtils.SignedFloatQNaN())), asuint(c));
+
+            c = chgsign(float2(TestUtils.SignedFloatZero(), 0f), float2(TestUtils.SignedFloatZero(), 0f));
+            TestUtils.AreEqual(float2.zero, c);
+            TestUtils.AreEqual(uint2.zero, asuint(c));
+
+            c = chgsign(float2(TestUtils.SignedFloatZero(), 0f), float2(0f, TestUtils.SignedFloatZero()));
+            TestUtils.AreEqual(float2.zero, c);
+            TestUtils.AreEqual(asuint(math.float2(TestUtils.SignedFloatZero())), asuint(c));
+        }
+
+        [TestCompiler]
+        public static void chgsign_float3()
+        {
+            float3 c = chgsign(float3(1f, -2f, 3f), float3(-1f, 23.548f, -0f));
+            TestUtils.AreEqual(float3(-1f, -2f, -3f), c);
+
+            c = chgsign(float3(-1f), float3(-1f, 1f, -1f));
+            TestUtils.AreEqual(float3(1f, -1f, 1f), c);
+
+            c = chgsign(float3(-1f), float3(1f, -1f, 1f));
+            TestUtils.AreEqual(float3(-1f, 1f, -1f), c);
+
+            c = chgsign(float3(-1f), float3(TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN(), TestUtils.SignedFloatQNaN()));
+            TestUtils.AreEqual(float3(1f, -1f, 1f), c);
+
+            c = chgsign(float3(-1f), float3(TestUtils.UnsignedFloatQNaN(), TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN()));
+            TestUtils.AreEqual(float3(-1f, 1f, -1f), c);
+
+            c = chgsign(float3(TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN(), TestUtils.SignedFloatQNaN()), float3(-1f, 1f, -1f));
+            TestUtils.IsTrue(all(isnan(c)));
+            TestUtils.AreEqual(asuint(float3(TestUtils.UnsignedFloatQNaN())), asuint(c));
+
+            c = chgsign(float3(TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN(), TestUtils.SignedFloatQNaN()), float3(1f, -1f, 1f));
+            TestUtils.IsTrue(all(isnan(c)));
+            TestUtils.AreEqual(asuint(float3(TestUtils.SignedFloatQNaN())), asuint(c));
+
+            c = chgsign(float3(TestUtils.SignedFloatZero(), 0f, TestUtils.SignedFloatZero()), float3(TestUtils.SignedFloatZero(), 0f, TestUtils.SignedFloatZero()));
+            TestUtils.AreEqual(float3.zero, c);
+            TestUtils.AreEqual(uint3.zero, asuint(c));
+
+            c = chgsign(float3(TestUtils.SignedFloatZero(), 0f, TestUtils.SignedFloatZero()), float3(0f, TestUtils.SignedFloatZero(), 0f));
+            TestUtils.AreEqual(float3.zero, c);
+            TestUtils.AreEqual(asuint(math.float3(TestUtils.SignedFloatZero())), asuint(c));
+        }
+
+        [TestCompiler]
+        public static void chgsign_float4()
+        {
+            float4 c = chgsign(float4(1f, 2f, 3f, -4f), float4(-1f, 0f, -0f, -23.56f));
+            TestUtils.AreEqual(float4(-1f, 2f, -3f, 4f), c);
+
+            c = chgsign(float4(-1f), float4(-1f, 1f, -1f, 1f));
+            TestUtils.AreEqual(float4(1f, -1f, 1f, -1f), c);
+
+            c = chgsign(float4(-1f), float4(1f, -1f, 1f, -1f));
+            TestUtils.AreEqual(float4(-1f, 1f, -1f, 1f), c);
+
+            c = chgsign(float4(-1f), float4(TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN(), TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN()));
+            TestUtils.AreEqual(float4(1f, -1f, 1f, -1f), c);
+
+            c = chgsign(float4(-1f), float4(TestUtils.UnsignedFloatQNaN(), TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN(), TestUtils.SignedFloatQNaN()));
+            TestUtils.AreEqual(float4(-1f, 1f, -1f, 1f), c);
+
+            c = chgsign(float4(TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN(), TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN()), float4(-1f, 1f, -1f, 1f));
+            TestUtils.IsTrue(all(isnan(c)));
+            TestUtils.AreEqual(asuint(float4(TestUtils.UnsignedFloatQNaN())), asuint(c));
+
+            c = chgsign(float4(TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN(), TestUtils.SignedFloatQNaN(), TestUtils.UnsignedFloatQNaN()), float4(1f, -1f, 1f, -1f));
+            TestUtils.IsTrue(all(isnan(c)));
+            TestUtils.AreEqual(asuint(float4(TestUtils.SignedFloatQNaN())), asuint(c));
+
+            c = chgsign(float4(TestUtils.SignedFloatZero(), 0f, TestUtils.SignedFloatZero(), 0f), float4(TestUtils.SignedFloatZero(), 0f, TestUtils.SignedFloatZero(), 0f));
+            TestUtils.AreEqual(float4.zero, c);
+            TestUtils.AreEqual(uint4.zero, asuint(c));
+
+            c = chgsign(float4(TestUtils.SignedFloatZero(), 0f, TestUtils.SignedFloatZero(), 0f), float4(0f, TestUtils.SignedFloatZero(), 0f, TestUtils.SignedFloatZero()));
+            TestUtils.AreEqual(float4.zero, c);
+            TestUtils.AreEqual(asuint(math.float4(TestUtils.SignedFloatZero())), asuint(c));
+        }
+
+        [TestCompiler]
+        public static unsafe void quaternion_to_euler()
+        {
+            const float epsilon = 0.0045f;
+            const float PI_div_6 = PI / 6f;
+            const int testAngleCount = 13 * 13 * 13 * 20;
+
+            float3* testAngles = stackalloc float3[testAngleCount];
+
+            int idx = 0;
+            for (int i = 0; i < 13; ++i)
+            {
+                float x = -PI + i * PI;
+                for (int j = 0; j < 13; ++j)
+                {
+                    float y = -PI + j * PI_div_6;
+                    for (int k = 0; k < 13; ++k)
+                    {
+                        float z = -PI + k * PI_div_6;
+                        for (int l = 0; l < 20; ++l)
+                        {
+                            testAngles[idx++] = float3(x, y, z) * (0.99f + l * 0.001f);
+                        }
+                    }
+                }
+            }
+
+            for (int order = 0; order < 6; ++order)
+            {
+                for (int i = 0; i < testAngleCount; ++i)
+                {
+                    // We cannot directly compare Euler angles, as different angles may represent the same rotation,
+                    // so we have to transform them back to quats to test.
+                    // We also need to create our initial test quaternion, as what we generated was euler angles.
+                    quaternion expected = TestRefEulerToQuat(testAngles[i], math.RotationOrder.Default);
+
+                    float3 actualEulers = Euler(expected, (math.RotationOrder)order);
+                    quaternion actualQuat = TestRefEulerToQuat(actualEulers, (math.RotationOrder)order);
+
+                    float error = angle(expected, actualQuat);
+                    TestUtils.AreEqual(0f, error, epsilon);
+                }
+            }
+        }
+
+        static quaternion TestRefEulerToQuat(float3 angle, math.RotationOrder order)
+        {
+            float3 halfRot = angle * 0.5f;
+            sincos(halfRot, out float3 s, out float3 c);
+
+            quaternion qX = quaternion(s.x, 0f, 0f, c.x);
+            quaternion qY = quaternion(0f, s.y, 0f, c.y);
+            quaternion qZ = quaternion(0f, 0f, s.z, c.z);
+
+            switch (order)
+            {
+                case math.RotationOrder.XYZ:
+                    return mul(mul(qZ, qY), qX);
+                case math.RotationOrder.XZY:
+                    return mul(mul(qY, qZ), qX);
+                case math.RotationOrder.YXZ:
+                    return mul(mul(qZ, qX), qY);
+                case math.RotationOrder.YZX:
+                    return mul(mul(qX, qZ), qY);
+                case math.RotationOrder.ZXY:
+                    return mul(mul(qY, qX), qZ);
+                case math.RotationOrder.ZYX:
+                    return mul(mul(qX, qY), qZ);
+                default:
+                    return quaternion(float4(1f));
+            }
+        }
+
+        [TestCompiler]
+        public static void mulScale()
+        {
+            var tolerance = 1e-5f;
+
+            // Random matrix.
+            var m = new float3x3(
+                0.891724169254302978516f, 0.156217902898788452148f, 0.492261469364166259766f,
+                0.562758803367614746094f, 0.00122839550022035837173f, 0.437942296266555786133f,
+                0.2576503753662109375f, 0.200372591614723205566f, 0.515525519847869873047f);
+
+            // Random scale.
+            var scale = new float3(0.235540181398391723633f, 0.215966641902923583984f, 0.533130943775177001953f);
+            var actual = math.mulScale(m, scale);
+            var expected = new float3x3(
+                0.210036873817443847656f, 0.0337378568947315216064f, 0.262439817190170288086f,
+                0.132552310824394226074f, 0.000265292444964870810509f, 0.233480587601661682129f,
+                0.0606870166957378387451f, 0.043273795396089553833f, 0.274842619895935058594f);
+
+            TestUtils.AreEqual(expected, actual, tolerance);
+        }
+
+        [TestCompiler]
+        public static void scaleMul()
+        {
+            var tolerance = 1e-5f;
+
+            // Random matrix, same as in mulScale test.
+            var m = new float3x3(
+                0.891724169254302978516f, 0.156217902898788452148f, 0.492261469364166259766f,
+                0.562758803367614746094f, 0.00122839550022035837173f, 0.437942296266555786133f,
+                0.2576503753662109375f, 0.200372591614723205566f, 0.515525519847869873047f);
+
+            // Random scale, same as in mulScale test.
+            var scale = new float3(0.235540181398391723633f, 0.215966641902923583984f, 0.533130943775177001953f);
+            var actual = math.scaleMul(scale, m);
+            var expected = new float3x3(
+                0.210036873817443847656f, 0.0367955937981605529785f, 0.115947358310222625732f,
+                0.121537126600742340088f, 0.000265292444964870810509f, 0.0945809260010719299316f,
+                0.137361392378807067871f, 0.106824830174446105957f, 0.274842619895935058594f);
+
+            TestUtils.AreEqual(expected, actual, tolerance);
+        }
+
+        [TestCompiler]
+        public static void piDoubleConstants()
+        {
+            var expectedPi = 3.141592653589793116;
+            TestUtils.AreEqual(expectedPi, PI_DBL);
+            TestUtils.AreEqual(expectedPi * 0.5, PIHALF_DBL);
+            TestUtils.AreEqual(expectedPi * 2.0, PI2_DBL);
+            TestUtils.AreEqual(expectedPi * 2.0, TAU_DBL);
+        }
+
+        [TestCompiler]
+        public static void piSingleConstants()
+        {
+            var expectedPi = 3.141592653589793116f;
+            TestUtils.AreEqual(expectedPi, PI);
+            TestUtils.AreEqual(expectedPi * 0.5f, PIHALF);
+            TestUtils.AreEqual(expectedPi * 2.0f, PI2);
+            TestUtils.AreEqual(expectedPi * 2.0f, TAU);
+        }
+
+        [TestCompiler]
+        public static void toDegreesConstants()
+        {
+            TestUtils.AreEqual(360.0, PI2_DBL * TODEGREES_DBL);
+            TestUtils.AreEqual(360.0, TAU_DBL * TODEGREES_DBL);
+            TestUtils.AreEqual(180.0, PI_DBL * TODEGREES_DBL);
+            TestUtils.AreEqual(90.0, PIHALF_DBL * TODEGREES_DBL);
+
+            TestUtils.AreEqual(360.0f, PI2 * TODEGREES);
+            TestUtils.AreEqual(360.0f, TAU * TODEGREES);
+            TestUtils.AreEqual(180.0f, PI * TODEGREES);
+            TestUtils.AreEqual(90.0f, PIHALF * TODEGREES);
+        }
+
+        [TestCompiler]
+        public static void toRadiansConstants()
+        {
+            TestUtils.AreEqual(PI2_DBL, 360.0 * TORADIANS_DBL);
+            TestUtils.AreEqual(TAU_DBL, 360.0 * TORADIANS_DBL);
+            TestUtils.AreEqual(PI_DBL, 180.0 * TORADIANS_DBL);
+            TestUtils.AreEqual(PIHALF_DBL, 90.0 * TORADIANS_DBL);
+
+            TestUtils.AreEqual(PI2, 360.0f * TORADIANS);
+            TestUtils.AreEqual(TAU, 360.0f * TORADIANS);
+            TestUtils.AreEqual(PI, 180.0f * TORADIANS);
+            TestUtils.AreEqual(PIHALF, 90.0f * TORADIANS);
+        }
+
+        [TestCompiler]
+        public static void degreesConversionGivesSameResult()
+        {
+            int n = 360;
+
+            for (int i = 0; i <= n; ++i)
+            {
+                double radians = math.unlerp((double)0, (double)n, (double)i) * PI_DBL;
+                TestUtils.AreEqual(math.degrees(radians), radians * TODEGREES_DBL);
+                TestUtils.AreEqual(math.degrees((float)radians), (float)radians * TODEGREES);
+            }
+        }
+
+        [TestCompiler]
+        public static void radiansConversionGivesSameResult()
+        {
+            int n = 360;
+
+            for (int i = 0; i <= n; ++i)
+            {
+                double degrees = (double)i;
+                TestUtils.AreEqual(math.radians(degrees), degrees * TORADIANS_DBL);
+                TestUtils.AreEqual(math.radians((float)degrees), (float)degrees * TORADIANS);
+            }
+        }
     }
 }
