@@ -944,7 +944,7 @@ namespace Unity.Mathematics.Tests
             TestUtils.AreEqual(r3, a3--);
         }
 
-        [TestCase]
+        [TestCase /* For player builds */]
         public static void float3x4_EqualsObjectOverride()
         {
             TestUtils.IsFalse(new float3x4().Equals((object)new int()));

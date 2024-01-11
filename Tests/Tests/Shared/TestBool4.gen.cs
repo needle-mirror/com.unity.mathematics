@@ -435,7 +435,7 @@ namespace Unity.Mathematics.Tests
             TestUtils.AreEqual(r3, !a3);
         }
 
-        [TestCase]
+        [TestCase /* For player builds */]
         public static void bool4_EqualsObjectOverride()
         {
             TestUtils.IsFalse(new bool4().Equals((object)new int()));

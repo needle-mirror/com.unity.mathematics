@@ -1057,7 +1057,7 @@ namespace Unity.Mathematics.Tests
             TestUtils.AreEqual(double4(2, 5, 0, 4), shuffle(a, b, ShuffleComponent.LeftZ, ShuffleComponent.RightZ, ShuffleComponent.LeftX, ShuffleComponent.RightY));
         }
 
-        [TestCase]
+        [TestCase /* For player builds */]
         public static void double3_EqualsObjectOverride()
         {
             TestUtils.IsFalse(new double3().Equals((object)new int()));

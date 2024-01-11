@@ -1239,7 +1239,7 @@ namespace Unity.Mathematics.Tests
             TestUtils.AreEqual(r3, ~a3);
         }
 
-        [TestCase]
+        [TestCase /* For player builds */]
         public static void uint3x3_EqualsObjectOverride()
         {
             TestUtils.IsFalse(new uint3x3().Equals((object)new int()));

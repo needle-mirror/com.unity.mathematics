@@ -1228,7 +1228,7 @@ namespace Unity.Mathematics.Tests
             TestUtils.AreEqual(r3, ~a3);
         }
 
-        [TestCase]
+        [TestCase /* For player builds */]
         public static void uint4x3_EqualsObjectOverride()
         {
             TestUtils.IsFalse(new uint4x3().Equals((object)new int()));
